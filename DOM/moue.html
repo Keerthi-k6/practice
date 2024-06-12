@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Changing Box</title>
+    <style>
+        .color-box {
+            width: 200px;
+            height: 200px;
+            background-color: lightgray;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            margin: 50px auto;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+
+<div class="color-box" id="colorBox">Hover over me</div>
+
+<script>
+    const box = document.getElementById('colorBox');
+
+    box.addEventListener('mouseover', () => {
+        box.style.backgroundColor = 'lightblue';
+        box.innerText = 'Mouse Over';
+    });
+
+    box.addEventListener('mouseout', () => {
+        box.style.backgroundColor = 'lightgray';
+        box.innerText = 'Mouse Out';
+    });
+
+    box.addEventListener('mousedown', () => {
+        box.style.backgroundColor = 'lightgreen';
+        box.innerText = 'Mouse Down';
+    });
+
+    box.addEventListener('mouseup', () => {
+        box.style.backgroundColor = 'lightcoral';
+        box.innerText = 'Mouse Up';
+    });
+
+    box.addEventListener('click', () => {
+        box.style.backgroundColor = 'yellow';
+        box.innerText = 'Mouse Clicked';
+    });
+
+    box.addEventListener('dblclick', () => {
+        box.style.backgroundColor = 'orange';
+        box.innerText = 'Double Clicked';
+    });
+</script>
+
+</body>
+</html>

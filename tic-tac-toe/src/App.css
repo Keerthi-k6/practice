@@ -1,0 +1,40 @@
+body{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.game
+{
+  max-width: calc(3*100px);
+  margin: 0 auto;
+  text-align: center;
+  padding: 20px;
+}
+.status
+{
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+}
+.board
+{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  justify-content: center;
+}
+.cell
+{
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+  font-size: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+.cell:hover
+{
+  background-color: lightgray;
+}
+.reset-button
+{
+  padding: 10px 20px;
+}

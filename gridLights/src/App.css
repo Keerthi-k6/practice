@@ -1,0 +1,35 @@
+body{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.wrapper
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+h1
+{
+  text-align: center;
+}
+.grid
+{
+  display: grid;
+  max-width: 300px;
+  width: 100%;
+  grid-template-columns: repeat(3,1fr);
+  border: 1px solid black;
+  gap:1rem;
+  padding: 1rem;
+
+}
+.cell
+{
+  background-color: transparent;
+  border: 1px solid black;
+  height: 0;
+  padding-bottom: 100%;
+}
+.cell-activate
+{
+  background-color: green;
+}

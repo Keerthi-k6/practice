@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form to Table</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Student Information Form</h2>
+<form id="studentForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required><br><br>
+
+    <label>Gender:</label>
+    <input type="radio" id="male" name="gender" value="Male" required>
+    <label for="male">Male</label>
+    <input type="radio" id="female" name="gender" value="Female">
+    <label for="female">Female</label><br><br>
+
+    <label>Subjects:</label>
+    <input type="checkbox" id="math" name="subjects" value="Math">
+    <label for="math">Math</label>
+    <input type="checkbox" id="science" name="subjects" value="Science">
+    <label for="science">Science</label>
+    <input type="checkbox" id="history" name="subjects" value="History">
+    <label for="history">History</label><br><br>
+
+    <label for="city">City:</label>
+    <select id="city" name="city" required>
+        <option value="New York">Vja </option>
+        <option value="Los Angeles">Mng</option>
+        <option value="Chicago">Gudivada</option>
+    </select><br><br>
+
+    <button type="button" onclick="submitForm()">Submit</button>
+</form>
+
+<h2>Submitted Data</h2>
+<table id="dataTable">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Subjects</th>
+            <th>City</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Form data will be inserted here -->
+    </tbody>
+</table>
+
+<script>
+    function submitForm() {
+        // Get form data
+        const name = document.getElementById('name').value;
+        const gender = document.querySelector('input[name="gender"]:checked').value;
+        
+        const subjects = [];
+        document.querySelectorAll('input[name="subjects"]:checked').forEach(checkbox => {
+            subjects.push(checkbox.value);
+        });
+
+        const city = document.getElementById('city').value;
+
+        // Insert data into table
+        const table = document.getElementById('dataTable').getElementsByTagName('tbody')[0];
+        const newRow = table.insertRow();
+
+        const cell1 = newRow.insertCell(0);
+        const cell2 = newRow.insertCell(1);
+        const cell3 = newRow.insertCell(2);
+        const cell4 = newRow.insertCell(3);
+
+        cell1.innerHTML = name;
+        cell2.innerHTML = gender;
+        cell3.innerHTML = subjects.join(', ');
+        cell4.innerHTML = city;
+
+        // Clear form fields
+        document.getElementById('studentForm').reset();
+    }
+</script>
+
+</body>
+</html>

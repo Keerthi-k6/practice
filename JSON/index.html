@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Salary Filter</title>
+</head>
+<body>
+    <h1>Employee Salary Filter</h1>
+    <label for="salaryInput">Enter minimum salary:</label>
+    <input type="number" id="salaryInput" placeholder="Enter salary">
+    <button onclick="filterEmployees()">Filter Employees</button>
+    <div id="employeeList"></div>
+
+    <script>
+        function fetchEmployees(callback) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'emp.json', true);
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    var employees = JSON.parse(xhr.responseText);
+                    callback(employees);
+                } else {
+                    console.error('Failed to fetch employees');
+                }
+            };
+            xhr.send();
+        }
+
+        function filterEmployees() {
+            var salaryInput = document.getElementById('salaryInput').value;
+            var minSalary = parseFloat(salaryInput);
+            if (isNaN(minSalary)) {
+                alert('Please enter a valid number');
+                return;
+            }
+
+            fetchEmployees(function (employees) {
+                var filteredEmployees = employees.filter(function (employee) {
+                    return employee.salary > minSalary;
+                });
+
+                displayEmployees(filteredEmployees);
+            });
+        }
+
+        function displayEmployees(employees) {
+            var employeeList = document.getElementById('employeeList');
+            employeeList.innerHTML = '';
+
+            if (employees.length === 0) {
+                employeeList.innerHTML = '<p>No employees found with a salary greater than the input amount.</p>';
+                return;
+            }
+
+            var ul = document.createElement('ul');
+            employees.forEach(function (employee) {
+                var li = document.createElement('li');
+                li.textContent = employee.name + ' (ID: ' + employee.id + ') - Salary: ' + employee.salary;
+                ul.appendChild(li);
+            });
+
+            employeeList.appendChild(ul);
+        }
+    </script>
+</body>
+</html>

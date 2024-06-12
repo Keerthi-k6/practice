@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Data Table</title>
+  <style>
+    table {
+      width: 100%;
+      border: 1px solid black;
+      }
+      td
+      {
+        border: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+
+<h1>User Data Table</h1>
+<table id="user-table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody id="user-body">
+
+  </tbody>
+</table>
+
+<script>
+  function displayUsers(users) {
+    var userBody = document.getElementById('user-body');
+    users.forEach(function(user) {
+      var row = userBody.insertRow();
+      row.innerHTML = `<td>${user.id}</td>
+                       <td>${user.name}</td>
+                       <td>${user.email}</td>`;
+    });
+  }
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'ab.json', true);
+  xhr.onload = function() {
+    if (this.status === 200) {
+      var jsonData = JSON.parse(this.responseText);
+      displayUsers(jsonData.users);
+    } else {
+      console.error('Failed to load data from ab.json');
+    }
+  };
+  xhr.onerror = function() {
+    console.error('Request error');
+  };
+
+  xhr.send();
+
+</script>
+
+</body>
+</html>
